@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GarageOS — GitHub for Your Garage</title>
+  <title>GarageOS â€” Built for People Who Actually Wrench</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -29,7 +29,7 @@
     a { color: var(--accent2); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* ── NAV ── */
+    /* â”€â”€ NAV â”€â”€ */
     nav {
       display: flex;
       align-items: center;
@@ -48,11 +48,23 @@
       color: var(--text);
     }
     .nav-brand span { color: var(--accent); }
-    .nav-links { display: flex; gap: 1.5rem; font-size: 0.9rem; }
+    .nav-links { display: flex; gap: 1.5rem; font-size: 0.9rem; align-items: center; }
     .nav-links a { color: var(--muted); }
     .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .nav-signup {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.45rem 1.1rem;
+      background: var(--accent);
+      color: #fff !important;
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    .nav-signup:hover { opacity: 0.85; text-decoration: none; }
 
-    /* ── HERO ── */
+    /* â”€â”€ HERO â”€â”€ */
     .hero {
       text-align: center;
       padding: 6rem 2rem 4rem;
@@ -113,7 +125,7 @@
       color: var(--text);
     }
 
-    /* ── SCREENSHOT PLACEHOLDER ── */
+    /* â”€â”€ SCREENSHOT PLACEHOLDER â”€â”€ */
     .screenshot-wrap {
       max-width: 900px;
       margin: 3rem auto 0;
@@ -134,7 +146,7 @@
     }
     .screenshot-placeholder svg { opacity: 0.4; }
 
-    /* ── SECTION ── */
+    /* â”€â”€ SECTION â”€â”€ */
     section { padding: 5rem 2rem; }
     .section-label {
       text-align: center;
@@ -157,7 +169,7 @@
       margin: 0 auto 3rem;
     }
 
-    /* ── FEATURES ── */
+    /* â”€â”€ FEATURES â”€â”€ */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -188,7 +200,7 @@
       line-height: 1.5;
     }
 
-    /* ── WHO IT'S FOR ── */
+    /* â”€â”€ WHO IT'S FOR â”€â”€ */
     .audience { background: var(--surface); }
     .audience-cards {
       display: grid;
@@ -208,7 +220,59 @@
     .audience-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
     .audience-card p { font-size: 0.88rem; color: var(--muted); }
 
-    /* ── CTA ── */
+    /* â”€â”€ PRICING â”€â”€ */
+    .pricing { background: var(--bg); }
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      text-align: center;
+    }
+    .pricing-card.featured {
+      border-color: var(--accent);
+    }
+    .pricing-card .plan-name {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .pricing-card .plan-price {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .pricing-card .plan-note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .pricing-card ul {
+      list-style: none;
+      text-align: left;
+      font-size: 0.9rem;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .pricing-card ul li::before {
+      content: "âœ“ ";
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* â”€â”€ CTA â”€â”€ */
     .cta-section {
       text-align: center;
       background: radial-gradient(ellipse at 50% 100%, rgba(247,129,102,0.08) 0%, transparent 70%);
@@ -225,7 +289,7 @@
       margin: 0 auto 2rem;
     }
 
-    /* ── FOOTER ── */
+    /* â”€â”€ FOOTER â”€â”€ */
     footer {
       border-top: 1px solid var(--border);
       padding: 2rem;
@@ -233,13 +297,11 @@
       font-size: 0.85rem;
       color: var(--muted);
     }
-    footer a { color: var(--muted); }
-    footer a:hover { color: var(--text); }
 
-    /* ── RESPONSIVE ── */
+    /* â”€â”€ RESPONSIVE â”€â”€ */
     @media (max-width: 600px) {
       nav { padding: 0.75rem 1rem; }
-      .nav-links { display: none; }
+      .nav-links { gap: 1rem; }
       .hero { padding: 4rem 1rem 2rem; }
       .cta-group { flex-direction: column; align-items: center; }
     }
@@ -253,23 +315,24 @@
     <div class="nav-links">
       <a href="#features">Features</a>
       <a href="#for-who">Who It's For</a>
-      <a href="https://github.com/erichexter/garageos">GitHub</a>
+      <a href="#pricing">Pricing</a>
+      <a class="nav-signup" href="mailto:eric@hexgarage.com?subject=Waitlist">Sign up</a>
     </div>
   </nav>
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-badge">Open Source</div>
+    <div class="hero-badge">Now in Beta</div>
     <h1>
-      <em>GitHub</em> for<br />your garage.
+      The build log for people<br />who <em>actually wrench.</em>
     </h1>
     <p>
-      Track every service record, mod, receipt, and build phase across all your vehicles —
-      in one place, forever.
+      The maintenance log, build journal, and cost tracker built for serious vehicle owners.
+      Sign up, add your vehicles, start logging. No setup. Works on any device.
     </p>
     <div class="cta-group">
-      <a class="btn btn-primary" href="https://github.com/erichexter/garageos">
-        View on GitHub
+      <a class="btn btn-primary" href="mailto:eric@hexgarage.com?subject=Waitlist">
+        Join the Waitlist
       </a>
       <a class="btn btn-secondary" href="#features">
         See Features
@@ -292,45 +355,45 @@
   <section id="features">
     <p class="section-label">What it does</p>
     <h2 class="section-title">Everything your build deserves</h2>
-    <p class="section-sub">From oil changes to full engine swaps — GarageOS keeps the complete history of every vehicle you own.</p>
+    <p class="section-sub">From oil changes to full engine swaps â€” GarageOS keeps the complete history of every vehicle you own.</p>
     <div class="features-grid">
       <div class="feature-card">
-        <div class="feature-icon">🔧</div>
+        <div class="feature-icon">ðŸ”§</div>
         <h3>Service Records</h3>
         <p>Log every maintenance event with date, mileage, parts, and cost. Never wonder when you last changed the oil.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">📖</div>
+        <div class="feature-icon">ðŸ“–</div>
         <h3>Build Journal</h3>
         <p>Document each build phase with notes, photos, and milestones. Share your build narrative publicly.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🧾</div>
+        <div class="feature-icon">ðŸ§¾</div>
         <h3>Receipt OCR</h3>
-        <p>Snap a photo of any receipt — GarageOS reads it, extracts the parts, and logs the cost automatically.</p>
+        <p>Snap a photo of any receipt â€” GarageOS reads it, extracts the parts, and logs the cost automatically.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">💰</div>
+        <div class="feature-icon">ðŸ’°</div>
         <h3>Cost Dashboard</h3>
         <p>See exactly what you've spent on each vehicle, by category, over time. No spreadsheet required.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">⚡</div>
+        <div class="feature-icon">âš¡</div>
         <h3>Dyno Log</h3>
         <p>Record power runs and track how your tune evolves with every modification.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🔔</div>
+        <div class="feature-icon">ðŸ””</div>
         <h3>Reminders</h3>
         <p>Set mileage or calendar-based reminders for service intervals so nothing falls through the cracks.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🗂️</div>
+        <div class="feature-icon">ðŸ—‚ï¸</div>
         <h3>Mod & Parts Provenance</h3>
         <p>Track where every part came from, what it replaced, and why you installed it.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🚗</div>
+        <div class="feature-icon">ðŸš—</div>
         <h3>Multi-Vehicle</h3>
         <p>Not VIN-locked. Manage your truck, daily, and project car all in one place.</p>
       </div>
@@ -344,19 +407,42 @@
     <p class="section-sub">Whether you're chasing power or just keeping up with maintenance, GarageOS is your build's source of truth.</p>
     <div class="audience-cards">
       <div class="audience-card">
-        <div class="icon">🏁</div>
+        <div class="icon">ðŸ</div>
         <h3>Performance Builders</h3>
         <p>Document every mod, track every dyno run, and share your progress publicly.</p>
       </div>
       <div class="audience-card">
-        <div class="icon">🔩</div>
+        <div class="icon">ðŸ”©</div>
         <h3>DIY Mechanics</h3>
         <p>Keep a complete service history so you always know what's been done and what's due.</p>
       </div>
       <div class="audience-card">
-        <div class="icon">🚙</div>
+        <div class="icon">ðŸš™</div>
         <h3>Multi-Vehicle Owners</h3>
-        <p>Manage your entire fleet — daily drivers, project cars, trucks — in one clean dashboard.</p>
+        <p>Manage your entire fleet â€” daily drivers, project cars, trucks â€” in one clean dashboard.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="pricing">
+    <p class="section-label">Pricing</p>
+    <h2 class="section-title">Free during beta</h2>
+    <p class="section-sub">Get in early and lock in your spot. Paid plans are coming â€” early access members get grandfathered pricing.</p>
+    <div class="pricing-cards">
+      <div class="pricing-card featured">
+        <p class="plan-name">Beta Access</p>
+        <p class="plan-price">Free</p>
+        <p class="plan-note">Paid plans coming soon</p>
+        <ul>
+          <li>Unlimited vehicles</li>
+          <li>Full service history</li>
+          <li>Build journal + mod log</li>
+          <li>Cost dashboard</li>
+          <li>Receipt OCR</li>
+          <li>Reminders</li>
+          <li>Early access to new features</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -364,18 +450,15 @@
   <!-- CTA -->
   <section class="cta-section">
     <h2>Start tracking your build.</h2>
-    <p>Open source. Self-hostable. No subscription. Just your garage, organized.</p>
-    <a class="btn btn-primary" href="https://github.com/erichexter/garageos">
-      Get GarageOS on GitHub
+    <p>Join the waitlist and be the first to know when GarageOS opens up.</p>
+    <a class="btn btn-primary" href="mailto:eric@hexgarage.com?subject=Waitlist">
+      Join the Waitlist
     </a>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>
-      Built by <a href="https://github.com/erichexter">Eric Hexter</a> &middot;
-      <a href="https://github.com/erichexter/garageos">Source on GitHub</a>
-    </p>
+    <p>&copy; 2026 GarageOS &middot; Built by Hex</p>
   </footer>
 
 </body>
