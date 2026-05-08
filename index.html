@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GarageOS — GitHub for Your Garage</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface2: #21262d;
+      --border: #30363d;
+      --accent: #f78166;
+      --accent2: #58a6ff;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --radius: 10px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(13,17,23,0.92);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .nav-brand {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .nav-brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 1.5rem; font-size: 0.9rem; }
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background: radial-gradient(ellipse at 50% 0%, rgba(88,166,255,0.08) 0%, transparent 70%);
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+    }
+    .cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .btn:hover { opacity: 0.85; transform: translateY(-1px); text-decoration: none; }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-secondary {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    /* ── SCREENSHOT PLACEHOLDER ── */
+    .screenshot-wrap {
+      max-width: 900px;
+      margin: 3rem auto 0;
+      padding: 0 2rem;
+    }
+    .screenshot-placeholder {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      height: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      gap: 0.5rem;
+    }
+    .screenshot-placeholder svg { opacity: 0.4; }
+
+    /* ── SECTION ── */
+    section { padding: 5rem 2rem; }
+    .section-label {
+      text-align: center;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 3rem;
+    }
+
+    /* ── FEATURES ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: border-color 0.2s;
+    }
+    .feature-card:hover { border-color: var(--accent2); }
+    .feature-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .feature-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── WHO IT'S FOR ── */
+    .audience { background: var(--surface); }
+    .audience-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .audience-card {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .audience-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .audience-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .audience-card p { font-size: 0.88rem; color: var(--muted); }
+
+    /* ── CTA ── */
+    .cta-section {
+      text-align: center;
+      background: radial-gradient(ellipse at 50% 100%, rgba(247,129,102,0.08) 0%, transparent 70%);
+      border-top: 1px solid var(--border);
+    }
+    .cta-section h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .cta-section p {
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 2rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--text); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 0.75rem 1rem; }
+      .nav-links { display: none; }
+      .hero { padding: 4rem 1rem 2rem; }
+      .cta-group { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand">Garage<span>OS</span></div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#for-who">Who It's For</a>
+      <a href="https://github.com/erichexter/garageos">GitHub</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">Open Source</div>
+    <h1>
+      <em>GitHub</em> for<br />your garage.
+    </h1>
+    <p>
+      Track every service record, mod, receipt, and build phase across all your vehicles —
+      in one place, forever.
+    </p>
+    <div class="cta-group">
+      <a class="btn btn-primary" href="https://github.com/erichexter/garageos">
+        View on GitHub
+      </a>
+      <a class="btn btn-secondary" href="#features">
+        See Features
+      </a>
+    </div>
+
+    <div class="screenshot-wrap">
+      <div class="screenshot-placeholder">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <circle cx="9" cy="9" r="2"/>
+          <path d="M21 15l-5-5L5 21"/>
+        </svg>
+        <span>App screenshot coming soon</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <p class="section-label">What it does</p>
+    <h2 class="section-title">Everything your build deserves</h2>
+    <p class="section-sub">From oil changes to full engine swaps — GarageOS keeps the complete history of every vehicle you own.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔧</div>
+        <h3>Service Records</h3>
+        <p>Log every maintenance event with date, mileage, parts, and cost. Never wonder when you last changed the oil.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📖</div>
+        <h3>Build Journal</h3>
+        <p>Document each build phase with notes, photos, and milestones. Share your build narrative publicly.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧾</div>
+        <h3>Receipt OCR</h3>
+        <p>Snap a photo of any receipt — GarageOS reads it, extracts the parts, and logs the cost automatically.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <h3>Cost Dashboard</h3>
+        <p>See exactly what you've spent on each vehicle, by category, over time. No spreadsheet required.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Dyno Log</h3>
+        <p>Record power runs and track how your tune evolves with every modification.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <h3>Reminders</h3>
+        <p>Set mileage or calendar-based reminders for service intervals so nothing falls through the cracks.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🗂️</div>
+        <h3>Mod & Parts Provenance</h3>
+        <p>Track where every part came from, what it replaced, and why you installed it.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚗</div>
+        <h3>Multi-Vehicle</h3>
+        <p>Not VIN-locked. Manage your truck, daily, and project car all in one place.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section id="for-who" class="audience">
+    <p class="section-label">Built for</p>
+    <h2 class="section-title">For people who take their builds seriously</h2>
+    <p class="section-sub">Whether you're chasing power or just keeping up with maintenance, GarageOS is your build's source of truth.</p>
+    <div class="audience-cards">
+      <div class="audience-card">
+        <div class="icon">🏁</div>
+        <h3>Performance Builders</h3>
+        <p>Document every mod, track every dyno run, and share your progress publicly.</p>
+      </div>
+      <div class="audience-card">
+        <div class="icon">🔩</div>
+        <h3>DIY Mechanics</h3>
+        <p>Keep a complete service history so you always know what's been done and what's due.</p>
+      </div>
+      <div class="audience-card">
+        <div class="icon">🚙</div>
+        <h3>Multi-Vehicle Owners</h3>
+        <p>Manage your entire fleet — daily drivers, project cars, trucks — in one clean dashboard.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Start tracking your build.</h2>
+    <p>Open source. Self-hostable. No subscription. Just your garage, organized.</p>
+    <a class="btn btn-primary" href="https://github.com/erichexter/garageos">
+      Get GarageOS on GitHub
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      Built by <a href="https://github.com/erichexter">Eric Hexter</a> &middot;
+      <a href="https://github.com/erichexter/garageos">Source on GitHub</a>
+    </p>
+  </footer>
+
+</body>
+</html>
